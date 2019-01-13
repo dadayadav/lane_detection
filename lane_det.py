@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+
+
 def canny(image):
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     blur = cv2.GaussianBlur(gray, (5,5),0)
@@ -83,7 +85,7 @@ def average_slope_intercept(image, lines):
 
 
 
-cap = cv2.VideoCapture(r'C:\Users\PRAVEEN\Desktop\test2.mp4')
+cap = cv2.VideoCapture() # Address of video
 while(cap.isOpened()):
     _, frame =  cap.read()
     lane_image= np.copy(frame)
