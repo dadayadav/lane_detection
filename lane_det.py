@@ -85,7 +85,7 @@ def average_slope_intercept(image, lines):
 
 
 
-cap = cv2.VideoCapture() # Address of video
+cap = cv2.VideoCapture() # :Location of video
 while(cap.isOpened()):
     _, frame =  cap.read()
     lane_image= np.copy(frame)
