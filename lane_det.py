@@ -21,7 +21,6 @@ def region_of_interest(image):
 
 def display_lines(lines, image):
     line_image = np.zeros_like(image)
-   # print(type(lines))
     if lines is not None:
         points = []
         for line in lines:
@@ -30,24 +29,16 @@ def display_lines(lines, image):
             points.append([x1, y1])
             points.append([x2, y2])
         points = np.array(points)
-        #print(type(points))
         a,b,c,d  = points[0][0], points[0][1], points[1][0], points[1][1]
         e,f,g,h = points[2][0], points[2][1], points[3][0], points[3][1]
         pts = np.array([[a,b], [c,d], [g,h], [e,f]], np.int32)
         pts = pts.reshape((-1,1,2))
-        #cv2.polylines(line_image,[pts],True,(0,255,255))
         cv2.fillPoly(line_image, [pts], (255,0,0), lineType=8, shift=0)
-        #cv2.polylines(line_image,[[a,b], [c,d], [g,h], [e,f]],True,(0,255, 0), -1)
-        #cv2.ellipse(line_image,(256,256),(100,50),0,0,180,255,-1)
     return line_image 
 
 
 def make_coordinate(image, line_parameters):
         line_parameters = np.array(line_parameters)
-    #print(line_parameters)
-    #if not all(np.isfinite(line_parameters)):
-     #   pass
-    #else:
         slope, intercept = line_parameters
         y1 = image.shape[0]
         y2 = int(y1*(2.7/5))
@@ -60,7 +51,6 @@ def average_slope_intercept(image, lines):
     left_fit = []
     global b
     right_fit = []
-    #print(lines)
     for line in lines:
         x1,y1, x2, y2 = line.reshape(4)
         parameters = np.polyfit((x1,x2), (y1, y2), 1)
